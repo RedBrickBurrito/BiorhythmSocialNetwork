@@ -13,5 +13,12 @@
   <h1 style="text-align: center; margin-top: 10%">
     Top 3 Users with compatibility
   </h1>
+  <div style="margin-top: 5%">
+    {% for user in top3 %}
+    <p style="text-align: center; font-size: large">
+      {{user.email}}: {{user.compatibility.mean}}%
+    </p>
+    {% endfor %}
+  </div>
 </div>
 {% endblock content %}

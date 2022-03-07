@@ -8,7 +8,16 @@ from django.shortcuts import render
 from datetime import date
 from pylab import *
 from user.models import CustomUser
-from .utils import getBiorhythmLevels
+from .utils import getBiorhythmLevels, getTop3Users
+
+def getCurrentUser(request):
+    # If there is a user logged in, get its info
+    if request.user.id:
+        return CustomUser.objects.get(id = request.user.id)
+
+    # Load default user with id 1
+    return CustomUser.objects.get(id = 1)
+
 
 def DailyBiorhythmChart(user):
     t1 = date.today().toordinal()
@@ -54,7 +63,7 @@ def DailyBiorhythmChart(user):
     return uri
 
 def HomePage(request, *args, **kwargs):
-    user = CustomUser.objects.get(id = request.user.id)
+    user = getCurrentUser(request)
     context = {
         'data': DailyBiorhythmChart(user),
         'levels': getBiorhythmLevels(user),
@@ -62,4 +71,9 @@ def HomePage(request, *args, **kwargs):
     return render(request, 'biorhythm/home.html', context)
 
 def Top3(request):
-    return render(request, 'biorhythm/top3.html', {})
+    all_users = CustomUser.objects.all()
+    user = getCurrentUser(request)
+    context = {
+        'top3': getTop3Users(user, all_users),
+    }
+    return render(request, 'biorhythm/top3.html', context)
