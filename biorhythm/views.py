@@ -1,30 +1,22 @@
-from django.shortcuts import render
-from pandas import array
+import matplotlib.dates as mdates
 import pandas as pd
-from user.models import CustomUser
-from numpy import array, sin, pi
-from datetime import date
 import matplotlib.pyplot as plt
 import base64
 import io
-from pylab import *
 import urllib, base64
-import matplotlib.dates as mdates
+from django.shortcuts import render
+from datetime import date
+from pylab import *
+from user.models import CustomUser
+from .utils import getBiorhythmLevels
 
-def DailyBiorhythmChart():
-    user = CustomUser.objects.get(id=1)
-
-    date_bd = user.birthday
-
-    t0 = date_bd.toordinal()
+def DailyBiorhythmChart(user):
     t1 = date.today().toordinal()
 
     dates = array(range((t1-1),(t1+9))) #range of 10 days
 
     # Calculate biorhythm levels
-    y = (sin(2*pi*(dates-t0)/23),   # Physical
-        sin(2*pi*(dates-t0)/28),   # Emotional
-        sin(2*pi*(dates-t0)/33))   # Intellectual
+    y = getBiorhythmLevels(user, dates)
     
     # append labels dates to each point in the chart
     label = []
@@ -61,24 +53,13 @@ def DailyBiorhythmChart():
 
     return uri
 
-def getCurrentBiorhythmLevels():
-    user = CustomUser.objects.get(id=1)
-
-    date_bd = user.birthday
-
-    t0 = date_bd.toordinal()
-    t1 = date.today().toordinal()
-
-    # Calculate biorhythm levels
-    y = (sin(2*pi*(t1-t0)/23),   # Physical
-        sin(2*pi*(t1-t0)/28),   # Emotional
-        sin(2*pi*(t1-t0)/33))   # Intellectual
-    
-    return y
-
 def HomePage(request, *args, **kwargs):
+    user = CustomUser.objects.get(id = request.user.id)
     context = {
-        'data': DailyBiorhythmChart(),
-        'levels': getCurrentBiorhythmLevels(),
+        'data': DailyBiorhythmChart(user),
+        'levels': getBiorhythmLevels(user),
     }
     return render(request, 'biorhythm/home.html', context)
+
+def Top3(request):
+    return render(request, 'biorhythm/top3.html', {})

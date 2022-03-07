@@ -1,0 +1,17 @@
+{% extends 'base.html' %}{% load static %} {% block content %}
+<style type="text/css">
+  .my-grid {
+    border: 1px solid black;
+  }
+  .my-grid-item {
+    border: 1px solid blue;
+  }
+</style>
+
+<div>
+  <h4>Your birthday: {{request.user.birthday}}</h4>
+  <h1 style="text-align: center; margin-top: 10%">
+    Top 3 Users with compatibility
+  </h1>
+</div>
+{% endblock content %}
