@@ -16,6 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from biorhythm.views import HomePage
+from .user.views import CustomLoginView
+
+
+
+
+
 urlpatterns = [
+    path('', HomePage, name='home'),
+    path('login/', CustomLoginView.as_view(), name='login'),
     path('admin/', admin.site.urls),
 ]

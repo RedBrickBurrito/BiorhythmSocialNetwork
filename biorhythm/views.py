@@ -82,3 +82,6 @@ def HomePage(request, *args, **kwargs):
         'levels': getCurrentBiorhythmLevels(),
     }
     return render(request, 'biorhythm/home.html', context)
+
+# def HomePage(request, *args, **kwargs):
+#     return render(request, 'biorhythm/home.html', {})
