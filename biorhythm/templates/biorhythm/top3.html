@@ -20,21 +20,25 @@
   <h1 style="text-align: center; margin-top: 10%">
     Top 3 Users with compatibility
   </h1>
-  <div style="display: grid; margin-top: 5%">
-    {% for user_info in top3 %}
-      <div style="display: grid; grid-template-columns: 50% 50%; justify-items: center;">
-        <p style="text-align: center; font-size: large;">
-          {{user_info.user.email}}: {{user_info.compatibility.mean}}%
-        </p>
-        {% if user_info.user not in request.user.friends.all and user_info.user != request.user %}
-          <a href="{% url 'add_friend' user_info.user.id %}">Add Friend</a>
-        {% endif %}
-      </div>
-    {% endfor %}
+  <div style="display: grid; grid-template-columns: 30% 70%; margin-top: 5%">
+    <div>
+      <h4>Friends list</h4>
+      {% for friend in request.user.friends.all %}
+        <p>{{friend}}</p>
+      {% endfor %}
+    </div>
+    <div>
+      {% for user_info in top3 %}
+        <div style="display: grid; grid-template-columns: 50% 50%; justify-items: center;">
+          <p style="text-align: center; font-size: large;">
+            {{user_info.user.email}}: {{user_info.compatibility.mean}}%
+          </p>
+          {% if user_info.user not in request.user.friends.all and user_info.user != request.user %}
+            <a href="{% url 'add_friend' user_info.user.id %}">Add Friend</a>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
   </div>
-  <h1 style="text-align: center; margin-top: 10%">Friends</h1>
-  {% for friend in request.user.friends.all %}
-    <p>{{friend}}</p>
-  {% endfor %}
 </div>
 {% endblock content %}
