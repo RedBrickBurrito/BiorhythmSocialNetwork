@@ -1,8 +1,13 @@
 from multiprocessing.sharedctypes import Value
 from pyexpat import model
+import re
+from venv import create
 from django.db import models
+from django.contrib import messages
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
+from django.http import HttpResponse
+from django.shortcuts import redirect
 from django.utils import timezone
 
 class CustomUserManager(BaseUserManager):
@@ -34,6 +39,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     username = None
     email = models.EmailField(verbose_name="email", max_length=60, unique=True)
     birthday = models.DateField(null=True, blank=False)
+    friends = models.ManyToManyField("CustomUser", null=True, blank=True)
     
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
@@ -50,3 +56,9 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     def has_module_perms(self, app_label):
         return True
+
+def add_friend(request, user_id):
+    new_friend = CustomUser.objects.get(id=user_id)
+    request.user.friends.add(new_friend)
+    messages.info(request, 'Friend added!')
+    return redirect('top3')

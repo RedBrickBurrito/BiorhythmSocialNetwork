@@ -7,18 +7,34 @@
     border: 1px solid blue;
   }
 </style>
+{% if messages %}
+<ul class="messages">
+  {% for message in messages %}
+  <li {% if message.tags %} class="{{message.tags}}" {% endif %}>{{message}}</li>
+  {% endfor %}
+</ul>
+{% endif %}
 
 <div>
   <h4>Your birthday: {{request.user.birthday}}</h4>
   <h1 style="text-align: center; margin-top: 10%">
     Top 3 Users with compatibility
   </h1>
-  <div style="margin-top: 5%">
-    {% for user in top3 %}
-    <p style="text-align: center; font-size: large">
-      {{user.email}}: {{user.compatibility.mean}}%
-    </p>
+  <div style="display: grid; margin-top: 5%">
+    {% for user_info in top3 %}
+      <div style="display: grid; grid-template-columns: 50% 50%; justify-items: center;">
+        <p style="text-align: center; font-size: large;">
+          {{user_info.user.email}}: {{user_info.compatibility.mean}}%
+        </p>
+        {% if user_info.user not in request.user.friends.all and user_info.user != request.user %}
+          <a href="{% url 'add_friend' user_info.user.id %}">Add Friend</a>
+        {% endif %}
+      </div>
     {% endfor %}
   </div>
+  <h1 style="text-align: center; margin-top: 10%">Friends</h1>
+  {% for friend in request.user.friends.all %}
+    <p>{{friend}}</p>
+  {% endfor %}
 </div>
 {% endblock content %}
