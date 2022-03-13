@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
+from django.db import models
 from .models import CustomUser
 
 class CustomUserCreationForm(UserCreationForm):
@@ -9,8 +10,9 @@ class CustomUserCreationForm(UserCreationForm):
             years=range(1980, 2022)
         )
     )
+    image = forms.ImageField()
 
     class Meta:
         model = CustomUser
-        fields = ('email','birthday')
+        fields = ('email','birthday','image')
         

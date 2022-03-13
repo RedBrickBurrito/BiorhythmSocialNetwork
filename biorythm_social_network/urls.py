@@ -7,7 +7,7 @@ from django.conf.urls.static import static
 from user.views import CustomLoginView
 
 urlpatterns = [
-    path('signup/', SignUpPage.as_view(), name='signup'),
+    path('signup/', SignUpPage, name='signup'),
     path('login/', CustomLoginView.as_view(), name='login'),
     path('', HomePage, name='home'),
     path('admin/', admin.site.urls),

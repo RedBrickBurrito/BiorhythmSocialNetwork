@@ -14,14 +14,15 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
       </head>
-    </head>
+    </head> 
+    
     <body style="font-family: Roboto;">
 
         <div style="width: 450px;  margin: 0 auto; padding: 10px;">
           <h1>Sign Up</h1>
-          <form method="post" >
+          <form enctype="multipart/form-data" method="post" >
             {% csrf_token %}
-            {{ form}}
+            {{ form }}
             <button type="submit" class="btn btn-primary">Sign Up</button>
           </form>
           <p>Already have an account? <a href="/login">Login</a></p>
