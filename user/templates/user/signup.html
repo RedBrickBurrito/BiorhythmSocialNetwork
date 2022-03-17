@@ -1,3 +1,4 @@
+{% load bootstrap5 %}
 <html>
     <head>
         <title>SignUp</title>
@@ -22,8 +23,10 @@
           <h1>Sign Up</h1>
           <form enctype="multipart/form-data" method="post" >
             {% csrf_token %}
-            {{ form }}
+            {% bootstrap_form form  %}
+            {% buttons %}
             <button type="submit" class="btn btn-primary">Sign Up</button>
+            {% endbuttons %}
           </form>
           <p>Already have an account? <a href="/login">Login</a></p>
           </div>

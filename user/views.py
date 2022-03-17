@@ -6,6 +6,8 @@ from django.urls import reverse_lazy, reverse
 from django.views.generic.edit import CreateView
 from .forms import CustomUserCreationForm
 from django.contrib.auth.views import LoginView
+from django.contrib.auth.hashers import make_password
+
 
 class CustomLoginView(LoginView):
     template_name = 'user/login.html'
@@ -21,7 +23,7 @@ def SignUpPage(request):
         form = CustomUserCreationForm(request.POST, request.FILES)
         if form.is_valid():
             email = form.cleaned_data.get("email")
-            password = form.clean_password2()
+            password = make_password(form.clean_password2())
             birthday = form.cleaned_data.get("birthday")
             image = form.cleaned_data.get("image")
             obj = CustomUser.objects.create(
