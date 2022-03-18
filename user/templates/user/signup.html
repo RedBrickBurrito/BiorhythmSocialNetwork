@@ -1,0 +1,46 @@
+{% load bootstrap5 %}
+{% load static %}
+{% load crispy_forms_tags %}
+<html>
+    <head>
+        <title>SignUp</title>
+        <meta charset="utf-8" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Material+Icons"
+          rel="stylesheet"
+        />
+        <link rel="stylesheet" type="text/css" href="{% static 'css/signup.css' %}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+      </head>
+    </head> 
+    
+    <body style="font-family: Roboto; background-color: #E5E5E5; color: #231773;">
+
+        <div class="formSignUp">
+          <h1 style="font-weight: 700; color: #6E30F2; font-size: 5vw;">Sign Up</h1>
+          <form  style="font-size: 1vw;" enctype="multipart/form-data" method="post">
+            {% csrf_token %}
+            {{form | crispy}}
+            {% buttons %}
+            <button  class="registerButton" type="submit" class="btn btn-primary">Register</button>
+            {% endbuttons %}
+          </form>
+          </div>
+          <div class="formLogin">
+          <svg style="margin-top: 10%;" xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-activity" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M6 2a.5.5 0 0 1 .47.33L10 12.036l1.53-4.208A.5.5 0 0 1 12 7.5h3.5a.5.5 0 0 1 0 1h-3.15l-1.88 5.17a.5.5 0 0 1-.94 0L6 3.964 4.47 8.171A.5.5 0 0 1 4 8.5H.5a.5.5 0 0 1 0-1h3.15l1.88-5.17A.5.5 0 0 1 6 2Z"/>
+          </svg>
+          <p style=" font-size: 5vw; margin-bottom: 5%; margin-top: 8%;">Hello, there!</p>
+          <p style="font-size: 1.7vw; margin-bottom: 5%;">Already have an account?</p>
+          <button class="loginButton" onclick="window.location.href='/login';">
+          Login
+        </button>
+        </div>
+    </body>
+</html>
