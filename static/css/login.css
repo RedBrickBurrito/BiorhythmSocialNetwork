@@ -1,0 +1,22 @@
+
+
+
+
+@media screen and (max-width: 800px) {
+    .formSignUp, .formLogin {
+      width: 100%;
+      font-size: 2vh;
+    }
+  }
+
+#id_password {
+    color: #231773;
+    font-size: 1.5vw;
+    border-radius: 9px;
+    border-style: solid;
+    font-weight: 400;
+}
+
+
+
+

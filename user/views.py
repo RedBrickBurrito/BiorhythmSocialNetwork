@@ -37,5 +37,5 @@ def SignUpPage(request):
     else:
         form = CustomUserCreationForm()
 
-    context["form"] = form 
+    context["signup_form"] = form 
     return render(request, "user/signup.html", context)

@@ -1,166 +1,174 @@
-
-
 .formLogin {
-    top: 0; height: 100%; float: left; 
-          left: 0%; width: 45%; z-index: 1; background-color: #6E30F2; 
-          text-align: center; font-weight: 700; color: #EBEDF2;
-          box-shadow: 0px 4px 66px rgba(0, 13, 255, 0.25);
-          border-radius: 64px;
+  top: 0;
+  height: 100%;
+  float: left;
+  left: 0%;
+  width: 45%;
+  z-index: 1;
+  background-color: #6e30f2;
+  text-align: center;
+  font-weight: 700;
+  color: #ebedf2;
+  box-shadow: 0px 4px 66px rgba(0, 13, 255, 0.25);
+  border-radius: 64px;
 }
 
 .formSignUp {
-    top: 0; height: 100%; float: right; 
-        left: 50%; width: 50%; z-index: 1;
+  top: 0;
+  height: 100%;
+  float: right;
+  left: 50%;
+  width: 50%;
+  z-index: 1;
 }
 @media screen and (max-width: 800px) {
-    .formSignUp, .formLogin {
-      width: 100%;
-      font-size: 2vh;
-    }
+  .formSignUp,
+  .formLogin {
+    width: 100%;
+    font-size: 2vh;
   }
-
+}
 
 .emailinput {
-    color: #231773;
-    font-size: 1.5vw;
-    border-radius: 9px;
-    border-style: solid;
-    font-weight: 400;
-    margin-left: 16.5%;
+  color: #231773;
+  font-size: 1.5vw;
+  border-radius: 9px;
+  border-style: solid;
+  font-weight: 400;
+  margin-left: 16.5%;
 }
 
 .control-label {
-    font-size: 1.5vw;
-    color: #231773;
-    font-weight: 700;
+  font-size: 1.5vw;
+  color: #231773;
+  font-weight: 700;
 }
 
 .control-group {
-    display: flex;
-    margin-bottom: 3%;
+  display: flex;
+  margin-bottom: 3%;
 }
 
 .selectdatewidget {
-    width: 15%;
-    background: white;
-    border-radius: 9px;
-    border-style: solid;
-    font-size: 1vw;
+  width: 15%;
+  background: white;
+  border-radius: 9px;
+  border-style: solid;
+  font-size: 1vw;
 }
 
 #id_birthday_month {
-    margin-left: 12%;
+  margin-left: 12%;
 }
 
 .controls {
-    width: 100%;
-    margin-left: 5%;
+  width: 100%;
+  margin-left: 5%;
 }
 
 .clearablefileinput {
-    font-size: 1vw;
-    margin-left: 16%;
+  font-size: 1vw;
+  margin-left: 16%;
 }
 
-
-
 #id_password1 {
-    color: #231773;
-    font-size: 1.5vw;
-    border-radius: 9px;
-    border-style: solid;
-    font-weight: 400;
-    margin-left: 10%;
+  color: #231773;
+  font-size: 1.5vw;
+  border-radius: 9px;
+  border-style: solid;
+  font-weight: 400;
+  margin-left: 10%;
 }
 
 #id_password2 {
-    color: #231773;
-    font-size: 1.5vw;
-    border-radius: 9px;
-    border-style: solid;
-    font-weight: 400;
+  color: #231773;
+  font-size: 1.5vw;
+  border-radius: 9px;
+  border-style: solid;
+  font-weight: 400;
 }
 
 #hint_id_password1 {
-    font-size: .8vw;
-    color: #FF0000;
+  font-size: 0.8vw;
+  color: #ff0000;
 }
 
 .registerButton {
-    align-self: center;
-    margin-top: 2%;
-    align-self: center;
-    text-align: center;
-    border-radius: 34px; 
-    border-style: none;
-    width: 20vh; 
-    height: 8vh;
-    font-size: 1.5vw;
-    font-family: 'Roboto';
-    font-weight: 700; 
-    background-color: #6E30F2;
-    color: #EBEDF2; 
-    cursor: pointer;
-    box-shadow: 0px 4px 25px rgba(81, 0, 255, 0.25);
-    -webkit-transition: all 0.3s;
+  align-self: center;
+  margin-top: 2%;
+  align-self: center;
+  text-align: center;
+  border-radius: 34px;
+  border-style: none;
+  width: 20vh;
+  height: 8vh;
+  font-size: 1.5vw;
+  font-family: "Roboto";
+  font-weight: 700;
+  background-color: #6e30f2;
+  color: #ebedf2;
+  cursor: pointer;
+  box-shadow: 0px 4px 25px rgba(81, 0, 255, 0.25);
+  -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
   transition: all 0.3s;
 }
 
 .registerButton:after {
-    z-index: -1;
-    -webkit-transition: all 0.3s;
-    -moz-transition: all 0.3s;
-    transition: all 0.3s;
+  z-index: -1;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
 }
 
 .loginButton:after {
-    z-index: -1;
-    -webkit-transition: all 0.3s;
-    -moz-transition: all 0.3s;
-    transition: all 0.3s;
+  z-index: -1;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
 }
 
 .registerButton:before {
-    -webkit-font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
 }
 
 .loginButton:before {
-    -webkit-font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
 }
 
 .registerButton:hover {
-    background-color: #49209F;
-    cursor: pointer;
+  background-color: #49209f;
+  cursor: pointer;
 }
 
 .loginButton {
-    border-radius: 34px; 
-          border: 5px solid #EBEDF2;  
-          width: 20vh; 
-          height: 8vh;
-          font-size: 1.5vw; 
-          font-family: 'Roboto'; 
-          font-weight: 700; 
-          background-color: #6E30F2;
-          color: #EBEDF2; cursor: pointer;
+  border-radius: 34px;
+  border: 5px solid #ebedf2;
+  width: 20vh;
+  height: 8vh;
+  font-size: 1.5vw;
+  font-family: "Roboto";
+  font-weight: 700;
+  background-color: #6e30f2;
+  color: #ebedf2;
+  cursor: pointer;
 }
 
 .loginButton:hover {
-    background-color: #EBEDF2;
-    color: #6E30F2;
-    cursor: pointer;
+  background-color: #ebedf2;
+  color: #6e30f2;
+  cursor: pointer;
 }
 
 ul {
-    margin-left: 7%;
+  margin-left: 7%;
 }
 
 #error_1_id_email {
-    color: #FF0000;
-    margin-left: 17%;
+  color: #ff0000;
+  margin-left: 17%;
 }
 
 #error_1_id_password2 {
-    color: #FF0000;
+  color: #ff0000;
 }
