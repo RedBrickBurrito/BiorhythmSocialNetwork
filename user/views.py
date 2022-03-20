@@ -1,9 +1,6 @@
 from django.shortcuts import redirect, render
 from user.models import CustomUser
-
-# Create your views here.
-from django.urls import reverse_lazy, reverse
-from django.views.generic.edit import CreateView
+from django.urls import reverse_lazy
 from .forms import CustomUserCreationForm
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.hashers import make_password
