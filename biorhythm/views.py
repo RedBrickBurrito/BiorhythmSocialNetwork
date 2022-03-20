@@ -63,6 +63,7 @@ def DailyBiorhythmChart(user):
     return uri
 
 def HomePage(request, *args, **kwargs):
+    all_users = CustomUser.objects.all()
     user = getCurrentUser(request)
     context = {
         'data': DailyBiorhythmChart(user),

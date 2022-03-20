@@ -9,16 +9,17 @@
 </style>
 
 <div>
-  <h4>Your birthday: {{request.user.birthday}}</h4>
-  <h1 style="text-align: center; margin-top: 10%">
-    Top 3 Users with compatibility
+  <h1 style="text-align: center; margin-top: 5%; color: #6E30F2; font-weight: 700; font-size: 3vw;">
+    Top 3 users with the most compatibility
   </h1>
-  <div style="margin-top: 5%">
+  <div style="margin-top: 5%;">
+    <ol>
     {% for user in top3 %}
-    <p style="text-align: center; font-size: large">
+    <li style="text-align: center; font-size: 1.5vw">
       {{user.email}}: {{user.compatibility.mean}}%
-    </p>
+    </li>
     {% endfor %}
+    <ol>
   </div>
 </div>
 {% endblock content %}
