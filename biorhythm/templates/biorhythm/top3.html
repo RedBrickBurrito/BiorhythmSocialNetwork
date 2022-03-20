@@ -23,9 +23,9 @@
   <h3 style="text-align: center; color: #231773; font-weight: 400; font-size: 1.2vw; width: 95%; margin: auto;"> Compatibility is calculated by summing the 3 areas : Physical, Emotional and Intellectual, and then they're averaged.</h3>
   <div style="margin-top: 5%;">
     <ol>
-    {% for user in top3 %}
+    {% for user_info in top3 %}
     <li style="text-align: center; font-size: 1.5vw">
-      <p>{{user.email}}: {{user.compatibility.mean}}%</p>
+      <p style="display: inline; margin-inline: 25px;">{{user_info.user.email}}: {{user_info.compatibility.mean}}%</p>
       {% if user_info.user not in request.user.friends.all and user_info.user != request.user %}
         <a href="{% url 'add_friend' user_info.user.id %}">Add Friend</a>
       {% endif %}
