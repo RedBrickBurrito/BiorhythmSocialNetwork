@@ -24,6 +24,7 @@
   <div class="d-none d-md-flex flex-row my-auto flex-grow-1 align-items-center">
     <h5 class="mr-3 font-weight-normal justify-content-start">
       <a class="p-2 text-dark" href="{% url 'home' %}">Home</a>
+      <a class="p-2 text-dark" href="{% url 'top3' %}">Top Compatibility</a>
     </h5>
     <div class="d-flex flex-row-reverse flex-grow-1">
       {% if request.user.is_authenticated %}

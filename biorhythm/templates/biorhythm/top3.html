@@ -1,0 +1,28 @@
+{% extends 'base.html' %}{% load static %} {% block content %}
+<style type="text/css">
+  .my-grid {
+    border: 1px solid black;
+  }
+  .my-grid-item {
+    border: 1px solid blue;
+  }
+</style>
+
+<div>
+  <h1 style="text-align: center; margin-top: 5%;margin-bottom: 3%; color: #6E30F2; font-weight: 700; font-size: 3vw;">
+    Top 3 users with the most compatibility
+  </h1>
+<div style="border-radius: 42px; background-color: white; width: 50%; height: 55%; margin: auto;box-shadow: 0px 4px 30px #9E97AD; padding: 5%;">
+  <h3 style="text-align: center; color: #231773; font-weight: 400; font-size: 1.2vw; width: 95%; margin: auto;"> Compatibility is calculated by summing the 3 areas : Physical, Emotional and Intellectual, and then they're averaged.</h3>
+  <div style="margin-top: 5%;">
+    <ol>
+    {% for user in top3 %}
+    <li style="text-align: center; font-size: 1.5vw">
+      {{user.email}}: {{user.compatibility.mean}}%
+    </li>
+    {% endfor %}
+    <ol>
+  </div>
+</div>
+</div>
+{% endblock content %}
