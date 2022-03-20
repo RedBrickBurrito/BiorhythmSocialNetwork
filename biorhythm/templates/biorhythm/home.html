@@ -1,4 +1,4 @@
-{% extends 'base.html' %}{% load static %}
+{% extends 'base.html' %}
 {% block content %}
 <style type="text/css">
     .my-grid {
@@ -10,13 +10,14 @@
   </style>
   
   <div>
-    <h1 style="text-align: center; margin-top: 5%; margin-bottom: 5%;">Daily Biorhythm Levels</h1>
-    <img style="display: block; width: 45%; height: 45%; margin-left: auto; margin-right: auto;" src="data:image/png;base64,{{data}}" alt="BiorhythmChart">
-    <div style="text-align: center; margin-top: 5%;">
-      <h3>Today's Level</h3>
-      {%for level in levels%}
-      <p>{{level}}</p>
-      {%endfor%}
+    <h1 style="text-align: center; margin-top: 3%; margin-bottom: 1%; 
+    font-weight: 700;font-size: 4vw; color:#6E30F2 ;">Daily Biorhythm Levels</h1>
+    <img style="display: block; min-width: 45%; min-height: 45%; margin-left: auto; margin-right: auto;" src="data:image/png;base64,{{data}}" alt="BiorhythmChart">
+    <div style="text-align: center; margin-top: 2%; font-size: 1.1vw; color: #231773;">
+      <h3 style="font-weight: 700;">Today's Level</h3>
+      <p>Physical : {{levels.0}}</p>
+      <p>Emotional : {{levels.0}}</p>
+      <p>Intellectual : {{levels.0}}</p>
     </div>
   </div>
   {% endblock content %}

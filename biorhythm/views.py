@@ -3,7 +3,7 @@ from pandas import array
 import pandas as pd
 from user.models import CustomUser
 from numpy import array, sin, pi
-from datetime import date
+from datetime import date, timedelta
 import matplotlib.pyplot as plt
 import base64
 import io
@@ -32,7 +32,7 @@ def DailyBiorhythmChart():
         label.append(date.fromordinal(p))
 
 
-    fig = figure()
+    fig = figure(facecolor='#E5E5E5')
     ax = fig.gca()
 
     plot(label, y[0], label, y[1], label, y[2])
@@ -52,6 +52,8 @@ def DailyBiorhythmChart():
 
     ax.grid(True, linewidth=0.25)
 
+    ax.set_facecolor('#E5E5E5')
+
     # save the chart in a buffer, to pass as a string
     buf = io.BytesIO()
     plt.savefig(buf, format="png")
@@ -67,7 +69,7 @@ def getCurrentBiorhythmLevels():
     date_bd = user.birthday
 
     t0 = date_bd.toordinal()
-    t1 = date.today().toordinal()
+    t1 = (date.today() - timedelta(days=1)).toordinal()
 
     # Calculate biorhythm levels
     y = (sin(2*pi*(t1-t0)/23),   # Physical
