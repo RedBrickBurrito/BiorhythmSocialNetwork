@@ -7,6 +7,7 @@ from django.conf.urls.static import static
 from user.views import CustomLoginView
 from django.contrib.auth.views import LogoutView
 from biorhythm.views import HomePage, Top3
+from user.models import add_friend
 
 urlpatterns = [
     path('signup/', SignUpPage, name='signup'),
@@ -15,4 +16,5 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(next_page='home'), name='logout'),
     path('top3/', Top3, name="top3"),
     path('admin/', admin.site.urls),
+    path('add_friend/<int:user_id>/', add_friend, name='add_friend'),
 ] + static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)

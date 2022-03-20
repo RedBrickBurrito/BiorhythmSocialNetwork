@@ -41,7 +41,7 @@ def getTop3Users(current_user, all_users):
     for user in all_users:
         if current_user == user:
             continue
-        compat_info.append({"email": user.email, "compatibility": getBiorhythmCompat(current_user.birthday, user.birthday)})
+        compat_info.append({"user": user, "compatibility": getBiorhythmCompat(current_user.birthday, user.birthday) })
 
     compat_info = sorted(compat_info, key=lambda x: x['compatibility']['mean'])
     compat_info.reverse()

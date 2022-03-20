@@ -7,6 +7,13 @@
     border: 1px solid blue;
   }
 </style>
+{% if messages %}
+<ul class="messages">
+  {% for message in messages %}
+  <li {% if message.tags %} class="{{message.tags}}" {% endif %}>{{message}}</li>
+  {% endfor %}
+</ul>
+{% endif %}
 
 <div>
   <h1 style="text-align: center; margin-top: 5%;margin-bottom: 3%; color: #6E30F2; font-weight: 700; font-size: 3vw;">
@@ -18,7 +25,10 @@
     <ol>
     {% for user in top3 %}
     <li style="text-align: center; font-size: 1.5vw">
-      {{user.email}}: {{user.compatibility.mean}}%
+      <p>{{user.email}}: {{user.compatibility.mean}}%</p>
+      {% if user_info.user not in request.user.friends.all and user_info.user != request.user %}
+        <a href="{% url 'add_friend' user_info.user.id %}">Add Friend</a>
+      {% endif %}
     </li>
     {% endfor %}
     <ol>
