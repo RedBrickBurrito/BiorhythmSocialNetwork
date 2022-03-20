@@ -32,7 +32,7 @@ def DailyBiorhythmChart():
         label.append(date.fromordinal(p))
 
 
-    fig = figure(facecolor='#E5E5E5')
+    fig = figure(facecolor='#ffffff')
     ax = fig.gca()
 
     plot(label, y[0], label, y[1], label, y[2])
@@ -52,7 +52,7 @@ def DailyBiorhythmChart():
 
     ax.grid(True, linewidth=0.25)
 
-    ax.set_facecolor('#E5E5E5')
+    ax.set_facecolor('#ffffff')
 
     # save the chart in a buffer, to pass as a string
     buf = io.BytesIO()
