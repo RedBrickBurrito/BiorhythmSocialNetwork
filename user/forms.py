@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
+from numpy import product
 from .models import CustomUser
+
 
 class CustomUserCreationForm(UserCreationForm):
     email = forms.EmailField(max_length=200, required=True)
@@ -13,5 +15,4 @@ class CustomUserCreationForm(UserCreationForm):
 
     class Meta:
         model = CustomUser
-        fields = ('email','birthday','image')
-        
+        fields = ('email', 'birthday', 'image')

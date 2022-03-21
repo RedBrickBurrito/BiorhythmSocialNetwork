@@ -1,0 +1,63 @@
+{% extends 'base.html' %}{% load static %} {% block content %}
+<style type="text/css">
+  .my-grid {
+    border: 1px solid black;
+  }
+  .my-grid-item {
+    border: 1px solid blue;
+  }
+</style>
+{% if messages %}
+<ul class="messages">
+  {% for message in messages %}
+  <li {% if message.tags %} class="{{message.tags}}" {% endif %}>
+    {{message}}
+  </li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+<div>
+  <h1
+    style="
+      text-align: center;
+      margin-top: 5%;
+      margin-bottom: 3%;
+      color: #6e30f2;
+      font-weight: 700;
+      font-size: 3vw;
+    "
+  >
+    Edit Event
+  </h1>
+  <div
+    style="
+      border-radius: 42px;
+      background-color: white;
+      width: 50%;
+      height: 55%;
+      margin: auto;
+      box-shadow: 0px 4px 30px #9e97ad;
+      padding: 5%;
+    "
+  >
+    <h3
+      style="
+        text-align: center;
+        color: #231773;
+        font-weight: 400;
+        font-size: 1.2vw;
+        width: 95%;
+        margin: auto;
+      "
+    >
+      Edit Event
+    </h3>
+    <br />
+    <form action="" method="POST">
+      {% csrf_token %} {{form}}
+      <input type="submit" value="Update Event" />
+    </form>
+  </div>
+</div>
+{% endblock content %}

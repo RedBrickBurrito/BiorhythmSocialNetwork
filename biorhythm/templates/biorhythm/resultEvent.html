@@ -1,0 +1,60 @@
+{% extends 'base.html' %}{% load static %} {% block content %}
+<style type="text/css">
+  .my-grid {
+    border: 1px solid black;
+  }
+  .my-grid-item {
+    border: 1px solid blue;
+  }
+</style>
+{% if messages %}
+<ul class="messages">
+  {% for message in messages %}
+  <li {% if message.tags %} class="{{message.tags}}" {% endif %}>{{message}}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+<div>
+  <h1 style="text-align: center; margin-top: 5%;margin-bottom: 3%; color: #6E30F2; font-weight: 700; font-size: 3vw;">
+    Result of event:
+  </h1>
+<div style="border-radius: 42px; background-color: white; width: 50%; height: 55%; margin: auto;box-shadow: 0px 4px 30px #9E97AD; padding: 5%;">
+  <h3 style="text-align: center; color: #231773; font-weight: 400; font-size: 1.2vw; width: 95%; margin: auto;"> My Events: </h3>
+    <br>
+    <div class="events">
+        {% for event in events %}
+          <div class = "event">
+              <h3>{{event.title}}</h3>
+              <h3>{{event.birthday}}</h3>
+              <p>User with the similar levels: </p>
+
+          </div>
+          <div style="margin-top: 5%;">
+            <ol>
+            {% for user_info in resultOfEvent %}
+            <li style="text-align: center; font-size: 1.5vw">
+              <p style="display: inline; margin-inline: 25px;">{{user_info.user.email}}: {{user_info.compatibility.mean}}%</p>
+              {% if user_info.user not in request.user.friends.all and user_info.user != request.user %}
+                <a href="{% url 'add_friend' user_info.user.id %}">Add Friend</a>
+              {% endif %}
+            </li>
+            <form action="{% url 'edit-event' event.id %}" class="btn btn-outline-secondary">
+              <button> Edit Event</button>
+            </form>
+            <form action="{% url 'delete-event' event.id %}" class="btn btn-outline-danger">
+              <button> Delete Event</button>
+            </form>
+            
+            {% endfor %}
+            <ol>
+          </div>
+          <br>
+        {% endfor %}
+        <br>
+    </div>
+    <br>
+  
+</div>
+</div>
+{% endblock content %}

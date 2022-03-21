@@ -11,9 +11,3 @@ After this run :
 ```console
 python manage.py runserver
 ```
-To make migrations :
-
-```console
-python manage.py makemigrations
-python manage.py migrate
-```

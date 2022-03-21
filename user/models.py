@@ -10,6 +10,7 @@ from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.utils import timezone
 
+
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, birthday, password, image):
         if not email:
@@ -23,7 +24,7 @@ class CustomUserManager(BaseUserManager):
         user.set_password(password)
         user.save(using=self._db)
         return user
-    
+
     def create_superuser(self, email, birthday, password):
         user = self.create_user(
             email=self.normalize_email(email),
@@ -36,17 +37,18 @@ class CustomUserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     username = None
     email = models.EmailField(verbose_name="email", max_length=60, unique=True)
     birthday = models.DateField(null=True, blank=False)
-    image= models.ImageField(upload_to='media/images/', null=True, verbose_name="")
+    image = models.ImageField(
+        upload_to='media/images/', null=True, verbose_name="")
     friends = models.ManyToManyField("CustomUser", null=True, blank=True)
-    
+
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     date_joined = models.DateTimeField(default=timezone.now)
-    
 
     USERNAME_FIELD = 'email'
     BIRTHDAY_FIELD = 'birthday'
@@ -59,6 +61,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     def has_module_perms(self, app_label):
         return True
+
 
 def add_friend(request, user_id):
     new_friend = CustomUser.objects.get(id=user_id)
