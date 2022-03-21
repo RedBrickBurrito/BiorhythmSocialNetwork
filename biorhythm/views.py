@@ -157,13 +157,17 @@ def ResultEvent(request):
     return render(request, 'biorhythm/resultEvent.html', context)
 
 
-def DeleteEvent(request, event_id):  # PROBLEMAS
+def DeleteEvent(request, event_id):
+    if not request.user.is_authenticated:
+        return redirect("login")
     event = Event.objects.get(pk=event_id)
     event.delete()
     return redirect("result-event")
 
 
 def EditEvent(request, event_id):
+    if not request.user.is_authenticated:
+        return redirect("login")
     event = Event.objects.get(pk=event_id)
     form = CreateEventForm(request.POST or None, instance=event)
     if(form.is_valid()):
