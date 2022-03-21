@@ -115,6 +115,8 @@ def Top3(request):
     context = {
         'top3': getTop3Users(user, all_users),
     }
+    if not request.user.is_authenticated:
+        return redirect("login")
     return render(request, 'biorhythm/top3.html', context)
 
 
@@ -122,7 +124,6 @@ def CreateEvent(request):
     if(request.method == 'POST'):
         form = CreateEventForm(request.POST)
         if(form.is_valid()):
-            # save the article to db
             instance = form.save(commit=False)
             instance.customUser = request.user
             instance.save()
@@ -132,6 +133,8 @@ def CreateEvent(request):
     context = {
         'form': form
     }
+    if not request.user.is_authenticated:
+        return redirect("login")
     return render(request, 'biorhythm/createEvent.html', context)
 
 
@@ -141,7 +144,7 @@ def ResultEvent(request):
     all_users = CustomUser.objects.all()
     user = getCurrentUser(request)
     events = Event.objects.all()
-    dates = Event.objects.filter().values_list('birthday', flat=True)
+    dates = Event.objects.filter().values_list('date', flat=True)
     dates_list = list(dates)
 
     context = {
@@ -149,6 +152,8 @@ def ResultEvent(request):
         'resultOfEvent': getUserEvent(user, all_users, dates_list),
 
     }
+    if not request.user.is_authenticated:
+        return redirect("login")
     return render(request, 'biorhythm/resultEvent.html', context)
 
 
@@ -169,5 +174,7 @@ def EditEvent(request, event_id):
         "object": event,
         "form": form
     }
+    if not request.user.is_authenticated:
+        return redirect("login")
 
     return render(request, "biorhythm/editEvent.html", context)

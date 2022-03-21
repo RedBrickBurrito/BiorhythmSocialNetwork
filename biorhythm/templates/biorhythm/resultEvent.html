@@ -1,33 +1,28 @@
 {% extends 'base.html' %}{% load static %} {% block content %}
-<style type="text/css">
-  .my-grid {
-    border: 1px solid black;
+<style>
+  .editdeleteButtons {
+    display: flex;
+    margin-top: 3%;
+    text-align: left;
   }
-  .my-grid-item {
-    border: 1px solid blue;
+  .btn.btn--secondary {
+    color: #231773;
   }
 </style>
-{% if messages %}
-<ul class="messages">
-  {% for message in messages %}
-  <li {% if message.tags %} class="{{message.tags}}" {% endif %}>{{message}}</li>
-  {% endfor %}
-</ul>
-{% endif %}
-
 <div>
   <h1 style="text-align: center; margin-top: 5%;margin-bottom: 3%; color: #6E30F2; font-weight: 700; font-size: 3vw;">
-    Result of event:
+    Events
   </h1>
-<div style="border-radius: 42px; background-color: white; width: 50%; height: 55%; margin: auto;box-shadow: 0px 4px 30px #9E97AD; padding: 5%;">
-  <h3 style="text-align: center; color: #231773; font-weight: 400; font-size: 1.2vw; width: 95%; margin: auto;"> My Events: </h3>
+<div style="border-radius: 42px; background-color: white; width: 50%; height: auto; margin: auto;box-shadow: 0px 4px 30px #9E97AD; padding: 5%;">
     <br>
     <div class="events">
+      {% if not events %}
+      <h3 style="text-align: center;"> No events here, chief.</h3>
+      {% endif %}
         {% for event in events %}
           <div class = "event">
-              <h3>{{event.title}}</h3>
-              <h3>{{event.birthday}}</h3>
-              <p>User with the similar levels: </p>
+              <h3>{{event.title}}. {{event.date}}</h3>
+              <p>User you're most compatible: </p>
 
           </div>
           <div style="margin-top: 5%;">
@@ -39,15 +34,17 @@
                 <a href="{% url 'add_friend' user_info.user.id %}">Add Friend</a>
               {% endif %}
             </li>
-            <form action="{% url 'edit-event' event.id %}" class="btn btn-outline-secondary">
-              <button> Edit Event</button>
-            </form>
-            <form action="{% url 'delete-event' event.id %}" class="btn btn-outline-danger">
-              <button> Delete Event</button>
-            </form>
             
             {% endfor %}
             <ol>
+              <div class="editdeleteButtons">
+                <form action="{% url 'edit-event' event.id %}" >
+                  <button class="btn btn--secondary"> Edit Event</button>
+                </form>
+                <form action="{% url 'delete-event' event.id %}">
+                  <button class="btn btn-outline-danger"> Delete Event</button>
+                </form>
+              </div>
           </div>
           <br>
         {% endfor %}

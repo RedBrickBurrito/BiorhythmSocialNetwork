@@ -1,21 +1,67 @@
 {% extends 'base.html' %}{% load static %} {% block content %}
-<style type="text/css">
-  .my-grid {
-    border: 1px solid black;
-  }
-  .my-grid-item {
-    border: 1px solid blue;
-  }
-</style>
-{% if messages %}
-<ul class="messages">
-  {% for message in messages %}
-  <li {% if message.tags %} class="{{message.tags}}" {% endif %}>
-    {{message}}
-  </li>
-  {% endfor %}
-</ul>
-{% endif %}
+{% load crispy_forms_tags %}
+  <style>
+    #id_date_month {
+      color: #231773;
+      width: 15%;
+      background: white;
+      border-radius: 9px;
+      border-style: solid;
+      font-size: 1vw;
+    }
+    #id_date_day {
+      color: #231773;
+      width: 8%;
+      background: white;
+      border-radius: 9px;
+      border-style: solid;
+      font-size: 1vw;
+    }
+    #id_date_year {
+      color: #231773;
+      width: 15%;
+      background: white;
+      border-radius: 9px;
+      border-style: solid;
+      font-size: 1vw;
+    }
+  
+    #id_title {
+      color: #231773;
+      font-size: 1vw;
+      border-radius: 9px;
+      border-style: solid;
+      font-weight: 400;
+      margin-bottom: 6%;
+    }
+  
+    #div_id_date {
+      margin-bottom: 6%;
+    }
+  
+    .updateEventButton {
+      align-self: center;
+      align-self: center;
+      text-align: center;
+      border-radius: 34px;
+      border-style: none;
+      width: 22vh;
+      height: 8vh;
+      font-size: 1.2vw;
+      font-weight: 700;
+      background-color: #6e30f2;
+      color: #ebedf2;
+      cursor: pointer;
+      box-shadow: 0px 4px 25px rgba(81, 0, 255, 0.25);
+      -webkit-transition: all 0.3s;
+      -moz-transition: all 0.3s;
+      transition: all 0.3s;
+    }
+    .updateEventButton:hover {
+      background-color: #49209f;
+      cursor: pointer;
+    }
+  </style>
 
 <div>
   <h1
@@ -35,28 +81,17 @@
       border-radius: 42px;
       background-color: white;
       width: 50%;
-      height: 55%;
+      height: auto;
       margin: auto;
       box-shadow: 0px 4px 30px #9e97ad;
       padding: 5%;
+      text-align: center;
+      font-size: 1vw;
     "
   >
-    <h3
-      style="
-        text-align: center;
-        color: #231773;
-        font-weight: 400;
-        font-size: 1.2vw;
-        width: 95%;
-        margin: auto;
-      "
-    >
-      Edit Event
-    </h3>
-    <br />
     <form action="" method="POST">
-      {% csrf_token %} {{form}}
-      <input type="submit" value="Update Event" />
+      {% csrf_token %} {{form | crispy}}
+      <input class="updateEventButton" type="submit" value="Update Event" />
     </form>
   </div>
 </div>

@@ -1,5 +1,6 @@
 from django import forms
 from numpy import product
+from datetime import date
 
 from user.models import CustomUser
 
@@ -7,15 +8,15 @@ from .models import Event
 
 
 class CreateEventForm(forms.ModelForm):
-    birthday = forms.DateField(
+    date = forms.DateField(
+        initial=date.today().strftime('%Y-%m-%d'),
         widget=forms.SelectDateWidget(
-            years=range(2022, 2100)
         ),         required=True
     )
 
     class Meta:
         model = Event
-        fields = {'title', 'birthday'}
+        fields = {'title', 'date'}
 
     # def __init__(self, *args, **kwargs):
     #     user = kwargs.pop('user', '')
