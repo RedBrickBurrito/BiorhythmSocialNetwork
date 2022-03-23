@@ -91,7 +91,8 @@ WSGI_APPLICATION = 'biorythm_social_network.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'biorhythmApp',
+        'NAME': 'biorhythmscApp',
+        'ENFORCE_SCHEMA': False,
         'CLIENT': {
             
            'host': f"mongodb+srv://{str(os.getenv('MONGO_USER'))}@biorhythmscapp.kpxpz.mongodb.net/biorhythmscApp?retryWrites=true&w=majority",

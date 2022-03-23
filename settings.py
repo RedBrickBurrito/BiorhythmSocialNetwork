@@ -30,7 +30,7 @@ MEDIA_URL= "/media/"
 SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -90,12 +90,15 @@ WSGI_APPLICATION = 'biorythm_social_network.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'biorhythmApp',
-        'CLIENT': {        
+        'NAME': 'biorhythmscApp',
+        'ENFORCE_SCHEMA': False,
+        'CLIENT': {
+            
            'host': f"mongodb+srv://{str(os.getenv('MONGO_USER'))}@biorhythmscapp.kpxpz.mongodb.net/biorhythmscApp?retryWrites=true&w=majority",
         }
     }
 }
+
 
 
 # Password validation
