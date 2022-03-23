@@ -11,7 +11,9 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 import os
 from pathlib import Path
+from dotenv import load_dotenv
 
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-z$edx+)bhl0m-xk%nw5q0kpyac0q!xes_()h22e=ysau-6a3)&'
+SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -86,7 +88,7 @@ DATABASES = {
         'ENGINE': 'djongo',
         'NAME': 'biorhythmApp',
         'CLIENT': {
-           'host': 'mongodb+srv://eddy:Calibre99@biorhythmapp.tkuel.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+           'host': f"mongodb+srv://{str(os.getenv('MONGO_USER'))}@biorhythmapp.tkuel.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
         }
     }
 }
