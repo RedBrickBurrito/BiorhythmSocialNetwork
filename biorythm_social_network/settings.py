@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -93,7 +93,8 @@ DATABASES = {
         'ENGINE': 'djongo',
         'NAME': 'biorhythmApp',
         'CLIENT': {
-           'host': f"mongodb+srv://{str(os.getenv('MONGO_USER'))}@biorhythmapp.tkuel.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+            
+           'host': f"mongodb+srv://{str(os.getenv('MONGO_USER'))}@biorhythmscapp.kpxpz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
         }
     }
 }
