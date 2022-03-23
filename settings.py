@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+import django_heroku
 
 load_dotenv()
 
@@ -90,8 +91,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'NAME': 'biorhythmApp',
-        'CLIENT': {
-           'host': f"mongodb+srv://{str(os.getenv('MONGO_USER'))}@biorhythmapp.tkuel.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+        'CLIENT': {        
+           'host': f"mongodb+srv://{str(os.getenv('MONGO_USER'))}@biorhythmscapp.kpxpz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
         }
     }
 }
@@ -137,4 +138,4 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
+django_heroku.settings(locals())
