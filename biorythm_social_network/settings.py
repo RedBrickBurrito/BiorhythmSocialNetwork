@@ -33,6 +33,10 @@ ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = "user.CustomUser"
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://biorhythmsc.herokuapp.com'
+]
+
 
 # Application definition
 
