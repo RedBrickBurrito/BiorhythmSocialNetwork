@@ -26,14 +26,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = "user.CustomUser"
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://biorhythmsc.herokuapp.com'
+    'https://biorhythmsocialnetwork.herokuapp.com'
 ]
 
 

@@ -35,7 +35,7 @@ DEBUG = False
 ALLOWED_HOSTS = []
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://biorhythmsc.herokuapp.com'
+    'https://biorhythmsocialnetwork.herokuapp.com'
 ]
 
 
