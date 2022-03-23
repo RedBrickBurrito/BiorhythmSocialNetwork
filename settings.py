@@ -92,7 +92,7 @@ DATABASES = {
         'ENGINE': 'djongo',
         'NAME': 'biorhythmApp',
         'CLIENT': {        
-           'host': f"mongodb+srv://{str(os.getenv('MONGO_USER'))}@biorhythmscapp.kpxpz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+           'host': f"mongodb+srv://{str(os.getenv('MONGO_USER'))}@biorhythmscapp.kpxpz.mongodb.net/biorhythmscApp?retryWrites=true&w=majority",
         }
     }
 }
