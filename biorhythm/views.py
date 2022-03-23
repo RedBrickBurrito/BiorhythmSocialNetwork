@@ -1,4 +1,5 @@
 from distutils.log import debug
+from urllib import request
 from django.shortcuts import get_object_or_404, render, redirect
 from pandas import array
 import matplotlib.dates as mdates
@@ -81,8 +82,8 @@ def DailyBiorhythmChart(user):
     return uri
 
 
-def getCurrentBiorhythmLevels():
-    user = CustomUser.objects.get(id=1)
+def getCurrentBiorhythmLevels(request):
+    user = CustomUser.objects.get(id = request.user.id)
 
     date_bd = user.birthday
 
@@ -98,13 +99,13 @@ def getCurrentBiorhythmLevels():
 
 
 def HomePage(request, *args, **kwargs):
+    if not request.user.is_authenticated:
+        return redirect("login")
     user = getCurrentUser(request)
     context = {
         'data': DailyBiorhythmChart(user),
-        'levels': getCurrentBiorhythmLevels(),
+        'levels': getCurrentBiorhythmLevels(request),
     }
-    if not request.user.is_authenticated:
-        return redirect("login")
 
     return render(request, 'biorhythm/home.html', context)
 
@@ -144,12 +145,13 @@ def ResultEvent(request):
     all_users = CustomUser.objects.all()
     user = getCurrentUser(request)
     events = Event.objects.all()
-    dates = Event.objects.filter().values_list('date', flat=True)
-    dates_list = list(dates)
+    
+    new_events = []
+    for event in events:
+        new_events.append({'eventsInfo':event, 'compat': getUserEvent(user, all_users, event.date)})
 
     context = {
-        'events': events,
-        'resultOfEvent': getUserEvent(user, all_users, dates_list),
+        'events': new_events,
 
     }
     if not request.user.is_authenticated:

@@ -83,8 +83,11 @@ WSGI_APPLICATION = 'biorythm_social_network.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'djongo',
+        'NAME': 'biorhythmApp',
+        'CLIENT': {
+           'host': 'mongodb+srv://eddy:Calibre99@biorhythmapp.tkuel.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+        }
     }
 }
 

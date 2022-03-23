@@ -58,11 +58,11 @@ def getUserEvent(current_user, all_users, birthday):
     for user in all_users:
         if current_user == user:
             continue
-        for date in birthday:
-            compat_info.append(
-                {"user": user, "compatibility": getBiorhythmCompat(date, user.birthday)})
+        compat_info.append(
+            {'user': user, 'compatibility': getBiorhythmCompat(user.birthday, birthday)}
+        )
 
     compat_info = sorted(compat_info, key=lambda x: x['compatibility']['mean'])
     compat_info.reverse()
 
-    return compat_info[:1]
+    return compat_info[0]

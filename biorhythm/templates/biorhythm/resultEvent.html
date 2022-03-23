@@ -21,30 +21,23 @@
       {% endif %}
         {% for event in events %}
           <div class = "event">
-              <h3>{{event.title}}. {{event.date}}</h3>
+              <h3>{{event.eventsInfo.title}}. {{event.eventsInfo.date}}</h3>
               <p>User you're most compatible: </p>
 
           </div>
-          <div style="margin-top: 5%;">
-            <ol>
-            {% for user_info in resultOfEvent %}
-            <li style="text-align: center; font-size: 1.5vw">
-              <p style="display: inline; margin-inline: 25px;">{{user_info.user.email}}: {{user_info.compatibility.mean}}%</p>
-              {% if user_info.user not in request.user.friends.all and user_info.user != request.user %}
-                <a href="{% url 'add_friend' user_info.user.id %}">Add Friend</a>
-              {% endif %}
-            </li>
-            
-            {% endfor %}
-            <ol>
-              <div class="editdeleteButtons">
-                <form action="{% url 'edit-event' event.id %}" >
-                  <button class="btn btn--secondary"> Edit Event</button>
-                </form>
-                <form action="{% url 'delete-event' event.id %}">
-                  <button class="btn btn-outline-danger"> Delete Event</button>
-                </form>
-              </div>
+          <div style="margin-top: 5%; text-align: center; font-size: 1.5vw">
+            <p style="display: inline; margin-inline: 25px;">{{event.compat.user.email}}: {{event.compat.compatibility.mean}}%</p>
+            {% if event.compat.user not in request.user.friends.all and event.compat.user != request.user %}
+              <a href="{% url 'add_friend' event.compat.user.id %}">Add Friend</a>
+            {% endif %}
+            <div class="editdeleteButtons">
+              <form action="{% url 'edit-event' event.eventsInfo.id %}" >
+                <button class="btn btn--secondary"> Edit Event</button>
+              </form>
+              <form action="{% url 'delete-event' event.eventsInfo.id %}">
+                <button class="btn btn-outline-danger"> Delete Event</button>
+              </form>
+            </div>
           </div>
           <br>
         {% endfor %}

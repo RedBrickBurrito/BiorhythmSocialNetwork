@@ -30,6 +30,7 @@ class CustomUserManager(BaseUserManager):
             email=self.normalize_email(email),
             birthday=birthday,
             password=password,
+            image=None,
         )
         user.is_admin = True
         user.is_staff = True
@@ -43,7 +44,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(verbose_name="email", max_length=60, unique=True)
     birthday = models.DateField(null=True, blank=False)
     image = models.ImageField(
-        upload_to='media/images/', null=True, verbose_name="")
+        upload_to='media/images/', blank=True,null = True, verbose_name="")
     friends = models.ManyToManyField("CustomUser", null=True, blank=True)
 
     is_staff = models.BooleanField(default=False)
